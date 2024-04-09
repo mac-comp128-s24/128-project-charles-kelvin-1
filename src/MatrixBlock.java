@@ -9,5 +9,11 @@ public class MatrixBlock extends Rectangle {
         this.setFillColor(Color.GRAY);
     }
 
+    public boolean isDefaultColor(){
+        if(this.getFillColor().equals(Color.GRAY))  
+            return true;
+        return false;
+    }
+
     
 }
