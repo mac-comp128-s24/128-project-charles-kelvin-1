@@ -1,24 +1,25 @@
-import edu.macalester.graphics.CanvasWindow;
 import java.awt.Color;
 
-public class LinePiece implements Shape{
+import edu.macalester.graphics.CanvasWindow;
+
+public class LBlock implements Shape{
     private double x;
     private double y;
     private CanvasWindow canvas;
 
-    public LinePiece(double x, double y, CanvasWindow canvas){
+    public LBlock(double x, double y, CanvasWindow canvas){
         this.x = x;
         this.y = y;
         this.canvas = canvas;
         Block block = new Block (x, y);
-        Block block1 = new Block (x, y + Block.SIZE);
-        Block block2 = new Block (x, y + 2*Block.SIZE);
-        Block block3 = new Block (x, y + 3*Block.SIZE);
+        Block block1 = new Block (x, y - Block.SIZE);
+        Block block2 = new Block (x+Block.SIZE, y - Block.SIZE);
+        Block block3 = new Block (x+ 2*Block.SIZE, y - Block.SIZE);
 
-        block.setFillColor(Color.BLUE);
-        block1.setFillColor(Color.BLUE);
-        block2.setFillColor(Color.BLUE);
-        block3.setFillColor(Color.BLUE);
+        block.setFillColor(Color.YELLOW);
+        block1.setFillColor(Color.YELLOW);
+        block2.setFillColor(Color.YELLOW);
+        block3.setFillColor(Color.YELLOW);
 
         canvas.add(block);
         canvas.add(block1);
@@ -44,3 +45,4 @@ public class LinePiece implements Shape{
     
     
 }
+
