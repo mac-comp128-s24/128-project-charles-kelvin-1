@@ -1,4 +1,6 @@
 import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.GraphicsObject;
+
 import java.awt.Color;
 
 public class LinePiece implements Shape{
@@ -41,6 +43,13 @@ public class LinePiece implements Shape{
         // }
     }
 
-    
+    @Override
+    public MatrixBlock getBlockAt(double x, double y) {
+        GraphicsObject g = canvas.getElementAt(x, y);
+        if(g != null && g instanceof MatrixBlock && !((MatrixBlock) g).isDefaultColor()){
+            return (MatrixBlock)g;
+        }
+        return null;
+    }
     
 }

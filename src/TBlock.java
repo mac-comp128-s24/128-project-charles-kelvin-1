@@ -1,5 +1,6 @@
 import java.awt.Color;
 import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.GraphicsObject;
     
 
 public class TBlock implements Shape{
@@ -13,7 +14,7 @@ public class TBlock implements Shape{
         Block block = new Block (x, y);
         Block block1 = new Block (x + Block.SIZE, y);
         Block block2 = new Block (x + 2 * Block.SIZE, y);
-        Block block3 = new Block (block1.getX(),  block2.getY()+Block.SIZE);
+        Block block3 = new Block (x + Block.SIZE,  y+Block.SIZE);
 
         block.setFillColor(Color.GREEN);
         block1.setFillColor(Color.GREEN);
@@ -34,5 +35,14 @@ public class TBlock implements Shape{
     public void automaticMove() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'automaticMove'");
+    }
+
+    @Override
+    public MatrixBlock getBlockAt(double x, double y) {
+        GraphicsObject g = canvas.getElementAt(x, y);
+        if(g != null && g instanceof MatrixBlock && !((MatrixBlock) g).isDefaultColor()){
+            return (MatrixBlock)g;
+        }
+        return null;
     }
 }

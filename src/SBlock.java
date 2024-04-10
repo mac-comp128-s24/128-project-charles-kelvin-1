@@ -1,6 +1,7 @@
 import java.awt.Color;
 
 import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.GraphicsObject;
 
 public class SBlock implements Shape{
     private double x;
@@ -42,6 +43,13 @@ public class SBlock implements Shape{
         // }
     }
 
-    
+    @Override
+    public MatrixBlock getBlockAt(double x, double y) {
+        GraphicsObject g = canvas.getElementAt(x, y);
+        if(g != null && g instanceof MatrixBlock && !((MatrixBlock) g).isDefaultColor()){
+            return (MatrixBlock)g;
+        }
+        return null;
+    }
     
 }
