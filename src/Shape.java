@@ -55,6 +55,7 @@ public class Shape {
         rotations.add(second);
         rotations.add(third);
         rotations.add(fourth);
+        coordinates = first;
     }
 
     private void IsOBlock(){
@@ -63,6 +64,20 @@ public class Shape {
         first[0][1] = 1;
         first[1][1] = 1;
 
+        second[0][0] = 1;
+        second[1][0] = 1;
+        second[0][1] = 1;
+        second[1][1] = 1;
+
+        third[0][0] = 1;
+        third[1][0] = 1;
+        third[0][1] = 1;
+        third[1][1] = 1;
+
+        fourth[0][0] = 1;
+        fourth[1][0] = 1;
+        fourth[0][1] = 1;
+        fourth[1][1] = 1;
 
     }
 
@@ -71,6 +86,21 @@ public class Shape {
         first[0][1] = 1;
         first[1][1] = 1;
         first[1][2] = 1;
+
+        second[0][1] = 1;
+        second[1][0] = 1;
+        second[1][1] = 1;
+        second[2][0] = 1;
+
+        third[0][0] = 1;
+        third[0][1] = 1;
+        third[1][1] = 1;
+        third[1][2] = 1;
+
+        fourth[0][1] = 1;
+        fourth[1][0] = 1;
+        fourth[1][1] = 1;
+        fourth[2][0] = 1;
     }
 
     private void IsSBlock(){
@@ -78,6 +108,21 @@ public class Shape {
         first[0][1] = 1;
         first[1][1] = 1;
         first[0][2] = 1;
+
+        second[0][0] = 1;
+        second[1][0] = 1;
+        second[1][1] = 1;
+        second[2][1] = 1;
+
+        third[1][0] = 1;
+        third[0][1] = 1;
+        third[1][1] = 1;
+        third[0][2] = 1;
+
+        fourth[0][0] = 1;
+        fourth[1][0] = 1;
+        fourth[1][1] = 1;
+        fourth[2][1] = 1;
     }
 
     private void IsIBlock(){
@@ -85,6 +130,21 @@ public class Shape {
         first[0][1] = 1;
         first[0][2] = 1;
         first[0][3] = 1;
+
+        second[0][0] = 1;
+        second[1][0] = 1;
+        second[2][0] = 1;
+        second[3][0] = 1;
+
+        third[0][0] = 1;
+        third[0][1] = 1;
+        third[0][2] = 1;
+        third[0][3] = 1;
+
+        fourth[0][0] = 1;
+        fourth[1][0] = 1;
+        fourth[2][0] = 1;
+        fourth[3][0] = 1;
     }
 
     private void IsLBlock(){
@@ -92,6 +152,21 @@ public class Shape {
         first[1][1] = 1;
         first[1][2] = 1;
         first[0][2] = 1;
+
+        second[0][0] = 1;
+        second[1][0] = 1;
+        second[2][0] = 1;
+        second[2][1] = 1;
+
+        third[0][0] = 1;
+        third[0][1] = 1;
+        third[0][2] = 1;
+        third[1][0] = 1;
+
+        fourth[0][0] = 1;
+        fourth[0][1] = 1;
+        fourth[1][1] = 1;
+        fourth[2][1] = 1;
     }
 
     private void IsJBlock(){
@@ -99,6 +174,21 @@ public class Shape {
         first[1][0] = 1;
         first[1][1] = 1;
         first[1][2] = 1;
+
+        second[0][1] = 1;
+        second[1][1] = 1;
+        second[2][1] = 1;
+        second[2][0] = 1;
+
+        third[0][0] = 1;
+        third[1][0] = 1;
+        third[1][1] = 1;
+        third[1][2] = 1;
+
+        fourth[0][0] = 1;
+        fourth[1][0] = 1;
+        fourth[0][1] = 1;
+        fourth[2][0] = 1;
     }
 
     private void IsTBlock(){
@@ -106,6 +196,37 @@ public class Shape {
         first[0][1] = 1;
         first[1][1] = 1;
         first[1][2] = 1;
+
+        second[0][0] = 1;
+        second[1][0] = 1;
+        second[2][0] = 1;
+        second[1][1] = 1;
+
+        third[0][0] = 1;
+        third[0][1] = 1;
+        third[0][2] = 1;
+        third[1][1] = 1;
+
+        fourth[0][1] = 1;
+        fourth[1][0] = 1;
+        fourth[1][1] = 1;
+        fourth[2][1] = 1;
+    }
+
+    public void rotate(){
+
+    }
+
+    public void gravity(){
+
+    }
+
+    public void moveHorizontal(double x){
+
+    }
+
+    public void moveVertical(double y){
+        
     }
 
 
