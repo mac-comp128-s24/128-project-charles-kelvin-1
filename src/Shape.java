@@ -1,4 +1,5 @@
 import java.util.Queue;
+import java.util.ArrayDeque;
 
 import edu.macalester.graphics.CanvasWindow;
 
@@ -21,6 +22,7 @@ public class Shape {
         this.matrixManager = matrixManager;
         this.canvas = canvas;
         this.name = name;
+        rotations = new ArrayDeque<>();
         coordinates = new int[4][4];
         first = new int[4][4];
         second = new int[4][4];
@@ -51,10 +53,10 @@ public class Shape {
         }else{ //T-Block
             IsTBlock();
         }
-        rotations.add(first);
         rotations.add(second);
         rotations.add(third);
         rotations.add(fourth);
+        rotations.add(first);
         coordinates = first;
     }
 
@@ -214,7 +216,9 @@ public class Shape {
     }
 
     public void rotate(){
-
+        int[][] removed = rotations.remove();
+        coordinates = removed;
+        rotations.add(removed);
     }
 
     public void gravity(){

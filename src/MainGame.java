@@ -4,6 +4,7 @@ import edu.macalester.graphics.events.KeyboardEvent;
 public class MainGame {
     private MatrixManager matrixManager;
     private CanvasWindow canvas;
+    private Shape shape;
     public final int WIDTH = 400;
     public final int HEIGHT = 600;
 
