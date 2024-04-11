@@ -4,8 +4,8 @@ import java.util.ArrayDeque;
 import edu.macalester.graphics.CanvasWindow;
 
 public class Shape {
-    private double x;
-    private double y;
+    private int x;
+    private int y;
     private int[][] coordinates;
     private int[][] first;
     private int[][] second;
@@ -16,7 +16,7 @@ public class Shape {
     private String name;
     private Queue<int[][]> rotations;
 
-    public Shape(double x, double y, MatrixManager matrixManager, CanvasWindow canvas, String name){
+    public Shape(int x, int y, MatrixManager matrixManager, CanvasWindow canvas, String name){
         this.x = x;
         this.y = y;
         this.matrixManager = matrixManager;
@@ -221,10 +221,26 @@ public class Shape {
         rotations.add(removed);
     }
 
-    
-
     public void gravity(){
-
+        // int yPosition = y + 1;
+        // boolean canMove = true;
+        
+        // int[][] current = matrixManager.getMatrix();
+        // for(int i = 0; i < coordinates.length; i++){
+        //     for(int j = 0; j < coordinates[i].length; j++){
+        //         if(intersect(current, i, j)){
+        //             canMove = false;
+        //             break;
+        //         }
+        //         if(coordinates[i][j] == 1)
+        //             current[i + yPosition][j + x] = 1;
+        //     }
+        // }
+        // if(canMove){
+        //     matrixManager.setMatrix(current);
+        //     y++;
+        //     matrixManager.colorBlockMatrix(this);
+        // }
     }
 
     public void moveHorizontal(double x){
@@ -236,9 +252,21 @@ public class Shape {
     }
 
     private boolean intersect(int[][] matrix,int i, int j){
-        if(coordinates[i][j] == 1 && matrix[i][j] == 1)
+        if(coordinates[i][j] == 1 && matrix[i + y + 1][j + x] == 1)
             return true;
         return false;
+    }
+
+    public int[][] getCoordinates(){
+        return coordinates;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
 

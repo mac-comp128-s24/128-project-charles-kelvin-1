@@ -56,5 +56,22 @@ public class MatrixManager {
         return matrix;
     }
 
+    public void setMatrix(int[][] m){
+        matrix = m;
+    }
+
+    public void colorBlockMatrix(Shape shape){
+        int[][] coordinates = shape.getCoordinates();
+        int x = shape.getX();
+        int y = shape.getY();
+        for(int i = y; i < (coordinates.length + y); i++){
+            for(int j = x; j < (coordinates[i].length + x); j++){
+                if(matrix[i][j] == 1){
+                    blocks[i][j].setFillColor(Color.RED);
+                }
+            }
+        }
+    }
+
 
 }
