@@ -35,8 +35,8 @@ public class MatrixManager {
     }
 
     public boolean rowIsComplete(int i){
-        for(int j = 0; j < blocks[i].length; j++){
-            if(blocks[i][j].isDefaultColor()){
+        for(int j = 0; j < matrix[i].length; j++){
+            if(matrix[i][j] == 0){
                 return false;
             }
         }
@@ -44,8 +44,10 @@ public class MatrixManager {
     }
 
     public void resetRow(int i){
-        for(int j = 0; j < blocks[i].length; j++)
+        for(int j = 0; j < blocks[i].length; j++){
             blocks[i][j].setFillColor(Color.GRAY);
+            matrix[i][j] = 0;
+        }
     }
 
     public MatrixBlock[][] getBlocks() {
