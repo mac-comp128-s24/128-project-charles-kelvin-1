@@ -48,12 +48,13 @@ public class MatrixManager {
             blocks[i][j].setFillColor(Color.GRAY);
     }
 
+    public MatrixBlock[][] getBlocks() {
+        return blocks;
+    }
 
-
-
-
-
-
+    public int[][] getMatrix(){
+        return matrix;
+    }
 
 
 }

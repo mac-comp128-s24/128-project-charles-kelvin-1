@@ -221,6 +221,8 @@ public class Shape {
         rotations.add(removed);
     }
 
+    
+
     public void gravity(){
 
     }
@@ -231,6 +233,12 @@ public class Shape {
 
     public void moveVertical(double y){
         
+    }
+
+    private boolean intersect(int[][] matrix,int i, int j){
+        if(coordinates[i][j] == 1 && matrix[i][j] == 1)
+            return true;
+        return false;
     }
 
 
