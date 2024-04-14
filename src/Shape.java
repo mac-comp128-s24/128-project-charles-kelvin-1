@@ -221,16 +221,49 @@ public class Shape {
         rotations.add(removed);
     }
 
+    //public void gravity(MatrixManager m){
+        // boolean canMove = true;
+        //     for (int i = 0; i < coordinates.length; i++) {
+        //         for (int j = 0; j < coordinates[i].length; j++) {
+        //             if (coordinates[i][j] == 1) {
+        //                 int newX = x + j;
+        //                 int newY = y + i + 1;
+        //                 if (newX < 0 || newX >= boardWidth || newY >= boardHeight || board[newY][newX] == 1) {
+        //                     canMove = false;
+        //                     break;
+        //                 }
+        //             }
+        //         }
+        //     }
+        //}
+
     public void gravity(){
-        int yPosition = y + 1;
-        boolean canMove = true;
-        
-        int[][] current = matrixManager.getMatrix();
-        for(int i = 0; i < coordinates.length; i++){
-            int matrixY = yPosition + i;
-            for(int j = 0; j < coordinates[i].length; j++){
-                int matrixX = x + j;
+        if(canMove(0, 1)){
+            int[][] matrix = matrixManager.getMatrix();
+            for(int i = 0; i < coordinates.length; i++){
+                for(int j = 0; j < coordinates[i].length; j++){
+                    if(coordinates[i][j] == 1)
+                        matrix[i + y + 1][j + x] = 1;
+                }
+            }
+            y++;
+            matrixManager.colorBlockMatrix();
         }
+    }
+
+    private boolean canMove(int dx, int dy) {
+        for (int i = 0; i < coordinates.length; i++) {
+            for (int j = 0; j < coordinates[i].length; j++) {
+                if (coordinates[i][j] == 1) {
+                    int newX = x + j + dx;
+                    int newY = y + i + dy;
+                    if (newX < 0 || newX >= matrixManager.getMatrix()[i].length || newY >= matrixManager.getMatrix().length || matrixManager.getMatrix()[newY][newX] == 1) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     public void moveHorizontal(double x){
