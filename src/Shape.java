@@ -222,25 +222,15 @@ public class Shape {
     }
 
     public void gravity(){
-        // int yPosition = y + 1;
-        // boolean canMove = true;
+        int yPosition = y + 1;
+        boolean canMove = true;
         
-        // int[][] current = matrixManager.getMatrix();
-        // for(int i = 0; i < coordinates.length; i++){
-        //     for(int j = 0; j < coordinates[i].length; j++){
-        //         if(intersect(current, i, j)){
-        //             canMove = false;
-        //             break;
-        //         }
-        //         if(coordinates[i][j] == 1)
-        //             current[i + yPosition][j + x] = 1;
-        //     }
-        // }
-        // if(canMove){
-        //     matrixManager.setMatrix(current);
-        //     y++;
-        //     matrixManager.colorBlockMatrix(this);
-        // }
+        int[][] current = matrixManager.getMatrix();
+        for(int i = 0; i < coordinates.length; i++){
+            int matrixY = yPosition + i;
+            for(int j = 0; j < coordinates[i].length; j++){
+                int matrixX = x + j;
+        }
     }
 
     public void moveHorizontal(double x){
@@ -251,11 +241,11 @@ public class Shape {
         
     }
 
-    private boolean intersect(int[][] matrix,int i, int j){
-        if(coordinates[i][j] == 1 && matrix[i + y + 1][j + x] == 1)
-            return true;
-        return false;
-    }
+    // private boolean intersect(int[][] matrix,int i, int j){
+    //     if(coordinates[i][j] == 1 && matrix[i + y + 1][j + x] == 1)
+    //         return true;
+    //     return false;
+    // }
 
     public int[][] getCoordinates(){
         return coordinates;
