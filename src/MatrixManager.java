@@ -65,9 +65,10 @@ public class MatrixManager {
     public void colorBlockMatrix(){
         for(int i = 0; i < matrix.length; i++){
             for(int j = 0; j < matrix[i].length; j++){
-                if(matrix[i][j] == 1){
+                if(matrix[i][j] == 1)
                     blocks[i][j].setFillColor(Color.RED);
-                }
+                else
+                    blocks[i][j].setFillColor(Color.GRAY);
             }
         }
     }

@@ -11,11 +11,13 @@ public class MainGame {
     public MainGame(){
         canvas = new CanvasWindow("Tetris", WIDTH, HEIGHT);
         matrixManager = new MatrixManager(canvas);
-        shape = new Shape(5, 0, matrixManager, canvas, "O-Block");
+        shape = new Shape(5, -1, matrixManager, canvas, "S-Block");
     }
 
     public void run(){
-            canvas.animate(() -> shape.gravity());
+            canvas.animate(() -> {
+                shape.gravity();
+                canvas.pause(1000);});
     }
 
     public void keyCheck(){

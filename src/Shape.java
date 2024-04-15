@@ -242,8 +242,11 @@ public class Shape {
             int[][] matrix = matrixManager.getMatrix();
             for(int i = 0; i < coordinates.length; i++){
                 for(int j = 0; j < coordinates[i].length; j++){
-                    if(coordinates[i][j] == 1)
+                    if(coordinates[i][j] == 1){
                         matrix[i + y + 1][j + x] = 1;
+                        if(i + y -1 > -1)
+                            matrix[i + y - 1][j + x] = 0;
+                    }
                 }
             }
             y++;
@@ -257,7 +260,7 @@ public class Shape {
                 if (coordinates[i][j] == 1) {
                     int newX = x + j + dx;
                     int newY = y + i + dy;
-                    if (newX < 0 || newX >= matrixManager.getMatrix()[i].length || newY >= matrixManager.getMatrix().length || matrixManager.getMatrix()[newY][newX] == 1) {
+                    if (newX < 0 || newX >= matrixManager.getMatrix()[i].length || newY >= matrixManager.getMatrix().length || (matrixManager.getMatrix()[newY][newX] == 1 && coordinates[newY - y][newX - x] != 1)) {
                         return false;
                     }
                 }
@@ -273,12 +276,6 @@ public class Shape {
     public void moveVertical(double y){
         
     }
-
-    // private boolean intersect(int[][] matrix,int i, int j){
-    //     if(coordinates[i][j] == 1 && matrix[i + y + 1][j + x] == 1)
-    //         return true;
-    //     return false;
-    // }
 
     public int[][] getCoordinates(){
         return coordinates;
