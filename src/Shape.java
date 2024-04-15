@@ -269,11 +269,38 @@ public class Shape {
         return true;
     }
 
-    public void moveHorizontal(double x){
-
+    public void moveHorizontal(int dx){
+        if(canMove(x, 0)){
+            int[][] matrix = matrixManager.getMatrix();
+                for(int i = 0; i < coordinates.length; i++){
+                    for(int j = 0; j < coordinates[i].length; j++){
+                        if(coordinates[i][j] == 1){
+                            matrix[i + y][j + x + dx] = 1;
+                            if(i + y -1 > -1)
+                                matrix[i + y - 1][j + x] = 0;
+                        }
+                    }
+                }
+            x+=dx;
+            matrixManager.colorBlockMatrix();
+        }
     }
 
-    public void moveVertical(double y){
+    public void moveVertical(int dy){
+        if(canMove(0, dy)){
+            int[][] matrix = matrixManager.getMatrix();
+                for(int i = 0; i < coordinates.length; i++){
+                    for(int j = 0; j < coordinates[i].length; j++){
+                        if(coordinates[i][j] == 1){
+                            matrix[i + y + dy][j + x] = 1;
+                            if(i + y -1 > -1)
+                                matrix[i + y - 1][j + x] = 0;
+                        }
+                    }
+                }
+            y++;
+            matrixManager.colorBlockMatrix();
+        }
         
     }
 
