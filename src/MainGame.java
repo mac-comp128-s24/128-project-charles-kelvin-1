@@ -24,8 +24,15 @@ public class MainGame {
 
     public void run(){
             canvas.animate(() -> {
+                if(currentShape.gravity()){
                 currentShape.gravity();
-                canvas.pause(1000);});
+                canvas.pause(1000);
+                } else{
+                    currentShape = shapeQueue.poll();
+                    generateBlock();
+                }
+            
+            });
     }
 
     public void keyCheck(){

@@ -232,8 +232,9 @@ public class Shape {
             }
             y++;
             matrixManager.colorBlockMatrix();
+            return true;
         }
-        return canMove(0, 1);
+        return false;
     }
 
     private boolean canMove(int dx, int dy) {
