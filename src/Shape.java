@@ -219,7 +219,7 @@ public class Shape {
         rotations.add(removed);
     }
 
-    public void gravity(){
+    public boolean gravity(){
         if(canMove(0, 1)){
             matrixManager.clearMatrix(this);
             int[][] matrix = matrixManager.getMatrix();
@@ -233,6 +233,7 @@ public class Shape {
             y++;
             matrixManager.colorBlockMatrix();
         }
+        return canMove(0, 1);
     }
 
     private boolean canMove(int dx, int dy) {
