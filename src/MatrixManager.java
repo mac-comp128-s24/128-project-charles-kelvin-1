@@ -79,7 +79,7 @@ public class MatrixManager {
         int y = shape.getY();
         for(int i = 0; i < coordinates.length; i++){
             for(int j = 0; j < coordinates[i].length; j++){
-                if(i + y > -1)
+                if(i + y > -1 && i + y < 20)
                     matrix[i + y][j + x] = 0;
             }
         }
