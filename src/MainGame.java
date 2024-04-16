@@ -14,7 +14,7 @@ public class MainGame {
     public MainGame(){
         canvas = new CanvasWindow("Tetris", WIDTH, HEIGHT);
         matrixManager = new MatrixManager(canvas);
-        shape = new Shape(5, -1, matrixManager, canvas, "O-Block");
+        shape = new Shape(5, -1, matrixManager, canvas, "S-Block");
     }
 
     public void run(){

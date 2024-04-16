@@ -13,7 +13,6 @@ public class Shape {
     private int[][] fourth;
     private MatrixManager matrixManager;
     private CanvasWindow canvas;
-    private String name;
     private Queue<int[][]> rotations;
 
     public Shape(int x, int y, MatrixManager matrixManager, CanvasWindow canvas, String name){
@@ -21,7 +20,6 @@ public class Shape {
         this.y = y;
         this.matrixManager = matrixManager;
         this.canvas = canvas;
-        this.name = name;
         rotations = new ArrayDeque<>();
         coordinates = new int[4][4];
         first = new int[4][4];
@@ -254,14 +252,12 @@ public class Shape {
 
     public void moveHorizontal(int dx){
         if(canMove(x, 0)){
+            matrixManager.clearMatrix(this);
             int[][] matrix = matrixManager.getMatrix();
                 for(int i = 0; i < coordinates.length; i++){
                     for(int j = 0; j < coordinates[i].length; j++){
-                        if(coordinates[i][j] == 1){
+                        if(coordinates[i][j] == 1)
                             matrix[i + y][j + x + dx] = 1;
-                            if(i + y -1 > -1)
-                                matrix[i + y - 1][j + x] = 0;
-                        }
                     }
                 }
             x+=dx;
@@ -271,13 +267,12 @@ public class Shape {
 
     public void moveVertical(int dy){
         if(canMove(0, dy)){
+            matrixManager.clearMatrix(this);
             int[][] matrix = matrixManager.getMatrix();
                 for(int i = 0; i < coordinates.length; i++){
                     for(int j = 0; j < coordinates[i].length; j++){
                         if(coordinates[i][j] == 1){
                             matrix[i + y + dy][j + x] = 1;
-                            // if(i + y -1 > -1)
-                            //     matrix[i + y - 1][j + x] = 0;
                         }
                     }
                 }
