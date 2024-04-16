@@ -15,7 +15,6 @@ public class MainGame {
         canvas = new CanvasWindow("Tetris", WIDTH, HEIGHT);
         matrixManager = new MatrixManager(canvas);
         shape = new Shape(5, -1, matrixManager, canvas, "O-Block");
-        keyCheck();
     }
 
     public void run(){

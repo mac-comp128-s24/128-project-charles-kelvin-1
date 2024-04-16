@@ -221,31 +221,14 @@ public class Shape {
         rotations.add(removed);
     }
 
-    //public void gravity(MatrixManager m){
-        // boolean canMove = true;
-        //     for (int i = 0; i < coordinates.length; i++) {
-        //         for (int j = 0; j < coordinates[i].length; j++) {
-        //             if (coordinates[i][j] == 1) {
-        //                 int newX = x + j;
-        //                 int newY = y + i + 1;
-        //                 if (newX < 0 || newX >= boardWidth || newY >= boardHeight || board[newY][newX] == 1) {
-        //                     canMove = false;
-        //                     break;
-        //                 }
-        //             }
-        //         }
-        //     }
-        //}
-
     public void gravity(){
         if(canMove(0, 1)){
+            matrixManager.clearMatrix(this);
             int[][] matrix = matrixManager.getMatrix();
             for(int i = 0; i < coordinates.length; i++){
                 for(int j = 0; j < coordinates[i].length; j++){
                     if(coordinates[i][j] == 1){
                         matrix[i + y + 1][j + x] = 1;
-                        if(i + y -1 > -1)
-                            matrix[i + y - 1][j + x] = 0;
                     }
                 }
             }
@@ -293,8 +276,8 @@ public class Shape {
                     for(int j = 0; j < coordinates[i].length; j++){
                         if(coordinates[i][j] == 1){
                             matrix[i + y + dy][j + x] = 1;
-                            if(i + y -1 > -1)
-                                matrix[i + y - 1][j + x] = 0;
+                            // if(i + y -1 > -1)
+                            //     matrix[i + y - 1][j + x] = 0;
                         }
                     }
                 }
