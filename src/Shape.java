@@ -214,22 +214,21 @@ public class Shape {
     }
 
     public void rotate(){
+        int[][] matrix = matrixManager.getMatrix();
+        for(int i = 0; i < coordinates.length; i++){
+            for(int j = 0; j < coordinates[i].length; j++){
+                if(matrix[i + y][j + x] == 1 && coordinates[i][j] == 1 && i + y > -1 && i + y < 20 && j + x <10 && j + x > -1){
+                    matrix[i + y][j + x] = 0;
+                }
+            }
+        }
         int[][] removed = rotations.remove();
         coordinates = removed;
         rotations.add(removed);
     }
 
-    public boolean gravity(){
+    public void gravity(){
         if(canMove(0, 1)){
-            // matrixManager.clearMatrix(this);
-            // int[][] matrix = matrixManager.getMatrix();
-            // for(int i = 0; i < coordinates.length; i++){
-            //     for(int j = 0; j < coordinates[i].length; j++){
-            //         if(coordinates[i][j] == 1){
-            //             matrix[i + y + 1][j + x] = 1;
-            //         }
-            //     }
-            // }
             int[][] matrix = matrixManager.getMatrix();
             for(int i = coordinates.length - 1; i >= 0; i--){
                 for(int j = 0; j < coordinates[i].length; j++){
@@ -242,12 +241,10 @@ public class Shape {
             }
             y++;
             matrixManager.colorBlockMatrix();
-            return true;
         }
-        return false;
     }
 
-    private boolean canMove(int dx, int dy) {
+    public boolean canMove(int dx, int dy) {
         for (int i = 0; i < coordinates.length; i++) {
             for (int j = 0; j < coordinates[i].length; j++) {
                 if (coordinates[i][j] == 1) {
@@ -262,38 +259,57 @@ public class Shape {
         return true;
     }
 
-    public void moveHorizontal(int dx){
-        if(canMove(x, 0)){
-            matrixManager.clearMatrix(this);
+    public void moveRight(){
+        if(canMove(1, 0)){
             int[][] matrix = matrixManager.getMatrix();
                 for(int i = 0; i < coordinates.length; i++){
-                    for(int j = 0; j < coordinates[i].length; j++){
-                        if(coordinates[i][j] == 1)
-                            matrix[i + y][j + x + dx] = 1;
+                    for(int j = coordinates[i].length-1; j >= 0;j--){
+                        if(coordinates[i][j] == 1){
+                            if(j + x > -1)
+                                matrix[i + y][j + x] = 0;
+                            matrix[i + y][j + x + 1] = 1;
+                        }
                     }
                 }
-            x+=dx;
+            x++;
             matrixManager.colorBlockMatrix();
         }
     }
 
-    public void moveVertical(int dy){
-        if(canMove(0, dy)){
+    public void moveLeft(){
+        if(canMove(-1, 0)){
             int[][] matrix = matrixManager.getMatrix();
-            for(int i = coordinates.length - 1; i >= 0; i--){
-                for(int j = 0; j < coordinates[i].length; j++){
-                    if(coordinates[i][j] == 1){
-                        if(i + y > -1)
-                            matrix[i + y][j + x] = 0;
-                        matrix[i + y + 1][j + x] = 1;
+                for(int i = 0; i < coordinates.length; i++){
+                    for(int j = 0; j < coordinates[i].length; j++){
+                        if(coordinates[i][j] == 1){
+                            if(i + y > -1)
+                                matrix[i + y][j + x] = 0;
+                            matrix[i + y][j + x - 1] = 1;
+                        }
                     }
                 }
-            }
-            y++;
+            x--;
             matrixManager.colorBlockMatrix();
         }
-        
     }
+
+    // public void moveVertical(int dy){
+    //     if(canMove(0, dy)){
+    //         int[][] matrix = matrixManager.getMatrix();
+    //         for(int i = coordinates.length - 1; i >= 0; i--){
+    //             for(int j = 0; j < coordinates[i].length; j++){
+    //                 if(coordinates[i][j] == 1){
+    //                     if(i + y > -1)
+    //                         matrix[i + y][j + x] = 0;
+    //                     matrix[i + y + 1][j + x] = 1;
+    //                 }
+    //             }
+    //         }
+    //         y++;
+    //         matrixManager.colorBlockMatrix();
+    //     }
+        
+    // }
 
     public int[][] getCoordinates(){
         return coordinates;

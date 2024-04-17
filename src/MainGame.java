@@ -25,8 +25,9 @@ public class MainGame {
 
     public void run(){
             canvas.animate(() -> {
-                if(currentShape.gravity()){
+                if(currentShape.canMove(0, 1)){
                 currentShape.gravity();
+                canvas.pause(500);
                 } else{
                     currentShape = shapeQueue.poll();
                     generateBlock();
@@ -36,18 +37,16 @@ public class MainGame {
     }
 
     public void keyCheck(){
-        System.out.println("keyCheck is called");
         canvas.onKeyDown(e -> handleKey(e));
     }
 
     public void handleKey(KeyboardEvent e){
-        System.out.println("Key pressed: " + e.getKey().toString()); // Add this line to check if handleKey() is being called
         if(e.getKey().toString().equalsIgnoreCase("A")){
-            currentShape.moveHorizontal(-1);
+            currentShape.moveLeft();
         } else if(e.getKey().toString().equalsIgnoreCase("D")){
-            currentShape.moveHorizontal(1);
+            currentShape.moveRight();
         }else if(e.getKey().toString().equalsIgnoreCase("S")){
-            currentShape.moveVertical(1);
+            currentShape.gravity();
         }else if(e.getKey().toString().equalsIgnoreCase("W")){
             currentShape.rotate();
         }
