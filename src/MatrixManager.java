@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 import edu.macalester.graphics.CanvasWindow;
 
@@ -85,5 +87,14 @@ public class MatrixManager {
         }
     }
 
+    public List<Integer> rowsAreComplete(Shape shape){
+        int y = shape.getY();
+        List<Integer> result = new ArrayList<>(4);
+        for(int i = y; i < y + 4; i++){
+            if(i < 20 && rowIsComplete(i))
+                result.add(i);
+        }
+        return result;
+    }
 
 }

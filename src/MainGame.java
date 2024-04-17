@@ -11,6 +11,7 @@ public class MainGame {
     public Queue<Shape> shapeQueue;
     public final int WIDTH = 400;
     public final int HEIGHT = 600;
+    public int score;
 
     public MainGame(){
         canvas = new CanvasWindow("Tetris", WIDTH, HEIGHT);
@@ -21,14 +22,16 @@ public class MainGame {
         currentShape = shapeQueue.poll();
         generateBlock();
         keyCheck();
+        score = 0;
     }
 
     public void run(){
             canvas.animate(() -> {
                 if(currentShape.canMove(0, 1)){
-                currentShape.gravity();
-                canvas.pause(500);
+                    currentShape.gravity();
+                    canvas.pause(500);
                 } else{
+
                     currentShape = shapeQueue.poll();
                     generateBlock();
                 }
@@ -71,6 +74,8 @@ public class MainGame {
             shapeName = "T-Block";
         shapeQueue.add(new Shape(5, -1, matrixManager, canvas, shapeName));
     }
+
+
 
     public static void main(String[] args) {
         MainGame mainGame = new MainGame();
