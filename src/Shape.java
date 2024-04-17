@@ -279,15 +279,16 @@ public class Shape {
 
     public void moveVertical(int dy){
         if(canMove(0, dy)){
-            matrixManager.clearMatrix(this);
             int[][] matrix = matrixManager.getMatrix();
-                for(int i = 0; i < coordinates.length; i++){
-                    for(int j = 0; j < coordinates[i].length; j++){
-                        if(coordinates[i][j] == 1){
-                            matrix[i + y + dy][j + x] = 1;
-                        }
+            for(int i = coordinates.length - 1; i >= 0; i--){
+                for(int j = 0; j < coordinates[i].length; j++){
+                    if(coordinates[i][j] == 1){
+                        if(i + y > -1)
+                            matrix[i + y][j + x] = 0;
+                        matrix[i + y + 1][j + x] = 1;
                     }
                 }
+            }
             y++;
             matrixManager.colorBlockMatrix();
         }
