@@ -31,7 +31,7 @@ public class MainGame {
                     currentShape.gravity();
                     canvas.pause(500);
                 } else{
-
+                    matrixManager.rowsAreComplete(currentShape);
                     currentShape = shapeQueue.poll();
                     generateBlock();
                 }

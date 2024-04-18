@@ -53,6 +53,15 @@ public class MatrixManager {
         }
     }
 
+    private void moveRowDown(int i, int numOfRows){
+        if(numOfRows > 0){
+            for(int j = 0; j < 10; j++){
+                matrix[i + numOfRows][j] = matrix[i][j];
+                matrix[i][j] = 0;
+            }
+        }
+    }
+
     public MatrixBlock[][] getBlocks() {
         return blocks;
     }
@@ -88,24 +97,22 @@ public class MatrixManager {
         }
     }
 
-    public List<Integer> rowsAreComplete(Shape shape){
+    public void rowsAreComplete(Shape shape){
         int y = shape.getY();
-        List<Integer> result = new ArrayList<>(4);
-        for(int i = y; i < y + 4; i++){
-            if(i < 20 && rowIsComplete(i))
-                result.add(i);
-        }
-
-        return result;
-    }
-
-    private void moveRemainingRows(Shape shape){
-        List<Integer> finishedRows = new ArrayList<>(4);
-        if(finishedRows.size() < 0){
-            int numOfRowsToMove = 0;
-            for(int row: finishedRows){
-                
-            }
+        int numOfRemovedRows = 0;
+        for(int i = y + 3; i >= y; i--){
+            if(i < 20){
+                if(rowIsComplete(i)){
+                    numOfRemovedRows++;
+                    resetRow(i);
+                } else
+                    moveRowDown(i, numOfRemovedRows);
+            } 
         }
     }
+
+
+
+
+
 }
