@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 import edu.macalester.graphics.CanvasWindow;
 
@@ -94,7 +95,17 @@ public class MatrixManager {
             if(i < 20 && rowIsComplete(i))
                 result.add(i);
         }
+
         return result;
     }
 
+    private void moveRemainingRows(Shape shape){
+        List<Integer> finishedRows = new ArrayList<>(4);
+        if(finishedRows.size() < 0){
+            int numOfRowsToMove = 0;
+            for(int row: finishedRows){
+                
+            }
+        }
+    }
 }
