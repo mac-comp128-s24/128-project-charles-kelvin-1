@@ -107,6 +107,8 @@ public class MatrixManager {
                 if(rowIsComplete(i)){
                     numOfRemovedRows++;
                     resetRow(i);
+                    if(i == y)
+                        moveRowDown(i - 1, numOfRemovedRows);
                 } else
                     moveRowDown(i, numOfRemovedRows);
             } 

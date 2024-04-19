@@ -56,7 +56,7 @@ public class MainGame {
     }
 
     private void generateBlock(){
-        int shapeNum = (int) (Math.random()*6);
+        int shapeNum = (int) (Math.random()*7);
         String shapeName;
         if(shapeNum == 0)
             shapeName = "O-Block";

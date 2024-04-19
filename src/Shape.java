@@ -281,7 +281,7 @@ public class Shape {
     }
 
     public void moveRight(){
-        if(canMove(1, 0)){
+        if(y > -1 && canMove(1, 0)){
             int[][] matrix = matrixManager.getMatrix();
                 for(int i = 0; i < coordinates.length; i++){
                     for(int j = coordinates[i].length-1; j >= 0;j--){
@@ -298,7 +298,7 @@ public class Shape {
     }
 
     public void moveLeft(){
-        if(x - 1 > -1 && canMove(-1, 0)){
+        if(x - 1 > -1 && y > -1 && canMove(-1, 0)){
             int[][] matrix = matrixManager.getMatrix();
                 for(int i = 0; i < coordinates.length; i++){
                     for(int j = 0; j < coordinates[i].length; j++){
