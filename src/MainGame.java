@@ -2,6 +2,8 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 import edu.macalester.graphics.CanvasWindow;
+import edu.macalester.graphics.FontStyle;
+import edu.macalester.graphics.GraphicsText;
 import edu.macalester.graphics.events.KeyboardEvent;
 
 public class MainGame {
@@ -12,6 +14,7 @@ public class MainGame {
     public final int WIDTH = 400;
     public final int HEIGHT = 600;
     public int score;
+    private GraphicsText scoreLabel;
 
     public MainGame(){
         canvas = new CanvasWindow("Tetris", WIDTH, HEIGHT);
@@ -23,6 +26,9 @@ public class MainGame {
         generateBlock();
         keyCheck();
         score = 0;
+        scoreLabel = new GraphicsText("Score: " + score);
+        scoreLabel.setFont(FontStyle.PLAIN, 24);
+        canvas.add(scoreLabel, 20, 40);
     }
 
     public void run(){
@@ -36,6 +42,7 @@ public class MainGame {
                         System.out.println("You're a loser");
                     }else{
                         matrixManager.rowsAreComplete(currentShape, this);
+                        scoreLabel.setText("Score: " + score);
                         currentShape = shapeQueue.poll();
                         generateBlock();
                     }
@@ -88,7 +95,7 @@ public class MainGame {
 
     public void setScore(int num){
         if(num == 0)
-            score+=0;
+            score+=10;
         else if(num == 1)
             score+=50;
         else if(num == 2)

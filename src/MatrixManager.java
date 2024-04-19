@@ -112,8 +112,8 @@ public class MatrixManager {
                 } else
                     moveRowDown(i, numOfRemovedRows);
             } 
-            
         }
+        m.setScore(numOfRemovedRows);
     }
 
 
