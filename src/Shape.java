@@ -213,21 +213,39 @@ public class Shape {
         fourth[2][1] = 1;
     }
 
+
+
     public void rotate(){
         if(x >= 0 || x < 10 || y < matrixManager.getMatrix().length || !(matrixManager.getMatrix()[x][y] == 1 && coordinates[x][y] != 1)){
             int[][] matrix = matrixManager.getMatrix();
             for(int i = 0; i < coordinates.length; i++){
                 for(int j = 0; j < coordinates[i].length; j++){
-                    if(matrix[i + y][j + x] == 1 && coordinates[i][j] == 1 && i + y > -1 && i + y < 20 && j + x <10 && j + x > -1){
+                    if(i + y > -1 && i + y < 20 && j + x <10 && j + x > -1 && matrix[i + y][j + x] == 1 && coordinates[i][j] == 1){
                         matrix[i + y][j + x] = 0;
                     }
                 }
             }
+            checkRotate();
             int[][] removed = rotations.remove();
             coordinates = removed;
             rotations.add(removed);
         }
         
+    }
+
+    public void checkRotate(){
+        int[][] next = rotations.peek();
+        int[][] matrix = matrixManager.getMatrix();
+        for(int i = 0; i < next.length; i++){
+            for(int j = 0; j < next[i].length; j++){
+                    if(i + y > 19)
+                        y-= (i + y - 19);
+                    if(j + x > 9)
+                        x-= (j + x - 9);
+                    else if(j + x == -1)
+                        x++;
+            }
+        }
     }
 
     public void gravity(){
@@ -268,7 +286,7 @@ public class Shape {
                 for(int i = 0; i < coordinates.length; i++){
                     for(int j = coordinates[i].length-1; j >= 0;j--){
                         if(coordinates[i][j] == 1){
-                            if(j + x > -1)
+                            if(j + x > -1 && j + x < 20)
                                 matrix[i + y][j + x] = 0;
                             matrix[i + y][j + x + 1] = 1;
                         }

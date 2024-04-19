@@ -53,11 +53,13 @@ public class MatrixManager {
         }
     }
 
-    private void moveRowDown(int i, int numOfRows){
+    private void moveRowDown(int index, int numOfRows){
         if(numOfRows > 0){
-            for(int j = 0; j < 10; j++){
-                matrix[i + numOfRows][j] = matrix[i][j];
-                matrix[i][j] = 0;
+            for(int i = index; i >= 0; i--){
+                for(int j = 0; j < 10; j++){
+                    matrix[i + numOfRows][j] = matrix[i][j];
+                    matrix[i][j] = 0;
+                }
             }
         }
     }
