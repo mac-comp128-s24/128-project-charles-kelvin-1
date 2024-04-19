@@ -136,20 +136,20 @@ public class Shape {
         first[0][2] = 1;
         first[0][3] = 1;
 
-        second[0][0] = 1;
-        second[1][0] = 1;
-        second[2][0] = 1;
-        second[3][0] = 1;
+        second[0][3] = 1;
+        second[1][3] = 1;
+        second[2][3] = 1;
+        second[3][3] = 1;
 
         third[0][0] = 1;
         third[0][1] = 1;
         third[0][2] = 1;
         third[0][3] = 1;
 
-        fourth[0][0] = 1;
-        fourth[1][0] = 1;
-        fourth[2][0] = 1;
-        fourth[3][0] = 1;
+        fourth[0][3] = 1;
+        fourth[1][3] = 1;
+        fourth[2][3] = 1;
+        fourth[3][3] = 1;
     }
 
     private void IsLBlock(){
