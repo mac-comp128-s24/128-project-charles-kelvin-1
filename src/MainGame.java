@@ -29,7 +29,7 @@ public class MainGame {
             canvas.animate(() -> {
                 if(currentShape.canMove(0, 1)){
                     currentShape.gravity();
-                    canvas.pause(500);
+                    canvas.pause(300);
                 } else{
                     matrixManager.rowsAreComplete(currentShape);
                     currentShape = shapeQueue.poll();

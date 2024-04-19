@@ -235,7 +235,6 @@ public class Shape {
 
     public void checkRotate(){
         int[][] next = rotations.peek();
-        int[][] matrix = matrixManager.getMatrix();
         for(int i = 0; i < next.length; i++){
             for(int j = 0; j < next[i].length; j++){
                     if(i + y > 19)
