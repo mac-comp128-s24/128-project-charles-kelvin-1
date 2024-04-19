@@ -99,10 +99,10 @@ public class MatrixManager {
         }
     }
 
-    public void rowsAreComplete(Shape shape){
+    public void rowsAreComplete(Shape shape, MainGame m){
         int y = shape.getY();
         int numOfRemovedRows = 0;
-        for(int i = y + 3; i >= y; i--){
+        for(int i = y + 4; i >= y; i--){
             if(i < 20){
                 if(rowIsComplete(i)){
                     numOfRemovedRows++;
@@ -112,10 +112,9 @@ public class MatrixManager {
                 } else
                     moveRowDown(i, numOfRemovedRows);
             } 
+            
         }
     }
-
-
 
 
 

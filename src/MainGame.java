@@ -31,9 +31,14 @@ public class MainGame {
                     currentShape.gravity();
                     canvas.pause(300);
                 } else{
-                    matrixManager.rowsAreComplete(currentShape);
-                    currentShape = shapeQueue.poll();
-                    generateBlock();
+                    if (isGameOver()){
+                        canvas.closeWindow();
+                        System.out.println("You're a loser");
+                    }else{
+                        matrixManager.rowsAreComplete(currentShape, this);
+                        currentShape = shapeQueue.poll();
+                        generateBlock();
+                    }
                 }
             
             });
@@ -74,7 +79,25 @@ public class MainGame {
             shapeName = "T-Block";
         shapeQueue.add(new Shape(5, -1, matrixManager, canvas, shapeName));
     }
+    public boolean isGameOver(){
+        if (!currentShape.canMove(0,1) && currentShape.getY() < 0){
+            return true;
+        }
+        return false;
+    }
 
+    public void setScore(int num){
+        if(num == 0)
+            score+=0;
+        else if(num == 1)
+            score+=50;
+        else if(num == 2)
+            score+=125;
+        else if(num == 3)
+            score+=300;
+        else
+            score+=500;
+    }
 
 
     public static void main(String[] args) {
