@@ -40,6 +40,7 @@ public class MainGame {
                     if (isGameOver()){
                         canvas.closeWindow();
                         System.out.println("You're a loser");
+                        System.out.println("Score: " + score);
                     }else{
                         matrixManager.rowsAreComplete(currentShape, this);
                         scoreLabel.setText("Score: " + score);
