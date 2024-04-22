@@ -15,5 +15,9 @@ public class MatrixBlock extends Rectangle {
         return false;
     }
 
+    public void setDefaultColor(){
+        this.setFillColor(Color.GRAY);
+    }
+
     
 }

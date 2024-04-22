@@ -1,7 +1,6 @@
 import java.util.Queue;
 import java.util.ArrayDeque;
-
-import edu.macalester.graphics.CanvasWindow;
+import java.awt.Color;
 
 public class Shape {
     private int x;
@@ -12,12 +11,11 @@ public class Shape {
     private int[][] third;
     private int[][] fourth;
     private MatrixManager matrixManager;
-    private CanvasWindow canvas;
     private Queue<int[][]> rotations;
+    private Color color;
 
-    public Shape(MatrixManager matrixManager, CanvasWindow canvas, String name){
+    public Shape(MatrixManager matrixManager, String name){
         this.matrixManager = matrixManager;
-        this.canvas = canvas;
         rotations = new ArrayDeque<>();
         coordinates = new int[5][5];
         first = new int[5][5];
@@ -59,6 +57,7 @@ public class Shape {
     private void IsOBlock(){
         x = 4;
         y = -1;
+        color = Color.YELLOW;
         first[0][0] = 1;
         first[1][0] = 1;
         first[0][1] = 1;
@@ -84,6 +83,7 @@ public class Shape {
     private void IsZBlock(){
         x = 4;
         y = -1;
+        color = Color.GREEN;
         first[0][0] = 1;
         first[0][1] = 1;
         first[1][1] = 1;
@@ -108,6 +108,7 @@ public class Shape {
     private void IsSBlock(){
         x = 4;
         y = -1;
+        color = Color.RED;
         first[1][0] = 1;
         first[0][1] = 1;
         first[1][1] = 1;
@@ -132,6 +133,7 @@ public class Shape {
     private void IsIBlock(){
         x = 3;
         y = -1;
+        color = Color.CYAN;
         first[0][0] = 1;
         first[0][1] = 1;
         first[0][2] = 1;
@@ -156,6 +158,7 @@ public class Shape {
     private void IsLBlock(){
         x = 3;
         y = -1;
+        color = Color.ORANGE;
         first[1][0] = 1;
         first[1][1] = 1;
         first[1][2] = 1;
@@ -180,6 +183,7 @@ public class Shape {
     private void IsJBlock(){
         x = 3;
         y = -1;
+        color = Color.BLUE;
         first[0][0] = 1;
         first[1][0] = 1;
         first[1][1] = 1;
@@ -204,6 +208,7 @@ public class Shape {
     private void IsTBlock(){
         x = 4;
         y = -1;
+        color = Color.PINK;
         first[1][0] = 1;
         first[0][1] = 1;
         first[1][1] = 1;
@@ -272,7 +277,7 @@ public class Shape {
                 }
             }
             y++;
-            matrixManager.colorBlockMatrix();
+            matrixManager.colorBlockMatrix(this);
         }
     }
 
@@ -304,7 +309,7 @@ public class Shape {
                     }
                 }
             x++;
-            matrixManager.colorBlockMatrix();
+            matrixManager.colorBlockMatrix(this);
         }
     }
 
@@ -321,27 +326,9 @@ public class Shape {
                     }
                 }
             x--;
-            matrixManager.colorBlockMatrix();
+            matrixManager.colorBlockMatrix(this);
         }
     }
-
-    // public void moveVertical(int dy){
-    //     if(canMove(0, dy)){
-    //         int[][] matrix = matrixManager.getMatrix();
-    //         for(int i = coordinates.length - 1; i >= 0; i--){
-    //             for(int j = 0; j < coordinates[i].length; j++){
-    //                 if(coordinates[i][j] == 1){
-    //                     if(i + y > -1)
-    //                         matrix[i + y][j + x] = 0;
-    //                     matrix[i + y + 1][j + x] = 1;
-    //                 }
-    //             }
-    //         }
-    //         y++;
-    //         matrixManager.colorBlockMatrix();
-    //     }
-        
-    // }
 
     public int[][] getCoordinates(){
         return coordinates;
@@ -353,6 +340,10 @@ public class Shape {
 
     public int getY() {
         return y;
+    }
+
+    public Color getColor() {
+        return color;
     }
 
 

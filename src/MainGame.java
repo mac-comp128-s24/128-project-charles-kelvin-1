@@ -85,7 +85,7 @@ public class MainGame {
             shapeName = "J-Block";
         else
             shapeName = "T-Block";
-        shapeQueue.add(new Shape(matrixManager, canvas, shapeName));
+        shapeQueue.add(new Shape(matrixManager, shapeName));
     }
     public boolean isGameOver(){
         if (!currentShape.canMove(0,1) && currentShape.getY() < 0){
