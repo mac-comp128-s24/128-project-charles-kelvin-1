@@ -15,17 +15,10 @@ public class Shape {
     private CanvasWindow canvas;
     private Queue<int[][]> rotations;
 
-    public Shape(int x, int y, MatrixManager matrixManager, CanvasWindow canvas, String name){
-        this.x = x;
-        this.y = y;
+    public Shape(MatrixManager matrixManager, CanvasWindow canvas, String name){
         this.matrixManager = matrixManager;
         this.canvas = canvas;
         rotations = new ArrayDeque<>();
-        // coordinates = new int[4][4];
-        // first = new int[4][4];
-        // second = new int[4][4];
-        // third = new int[4][4];
-        // fourth = new int[4][4];
         coordinates = new int[5][5];
         first = new int[5][5];
         second = new int[5][5];
@@ -64,6 +57,8 @@ public class Shape {
     }
 
     private void IsOBlock(){
+        x = 4;
+        y = -1;
         first[0][0] = 1;
         first[1][0] = 1;
         first[0][1] = 1;
@@ -87,6 +82,8 @@ public class Shape {
     }
 
     private void IsZBlock(){
+        x = 4;
+        y = -1;
         first[0][0] = 1;
         first[0][1] = 1;
         first[1][1] = 1;
@@ -109,6 +106,8 @@ public class Shape {
     }
 
     private void IsSBlock(){
+        x = 4;
+        y = -1;
         first[1][0] = 1;
         first[0][1] = 1;
         first[1][1] = 1;
@@ -131,6 +130,8 @@ public class Shape {
     }
 
     private void IsIBlock(){
+        x = 3;
+        y = -1;
         first[0][0] = 1;
         first[0][1] = 1;
         first[0][2] = 1;
@@ -153,6 +154,8 @@ public class Shape {
     }
 
     private void IsLBlock(){
+        x = 3;
+        y = -1;
         first[1][0] = 1;
         first[1][1] = 1;
         first[1][2] = 1;
@@ -175,6 +178,8 @@ public class Shape {
     }
 
     private void IsJBlock(){
+        x = 3;
+        y = -1;
         first[0][0] = 1;
         first[1][0] = 1;
         first[1][1] = 1;
@@ -197,6 +202,8 @@ public class Shape {
     }
 
     private void IsTBlock(){
+        x = 4;
+        y = -1;
         first[1][0] = 1;
         first[0][1] = 1;
         first[1][1] = 1;
