@@ -276,6 +276,7 @@ public class Shape {
                     }
                 }
             }
+            // matrixManager.clearBlocks(this);
             y++;
             matrixManager.colorBlockMatrix(this);
         }
@@ -287,7 +288,7 @@ public class Shape {
                 if (coordinates[i][j] == 1) {
                     int newX = x + j + dx;
                     int newY = y + i + dy;
-                    if (newX < 0 || newX >= matrixManager.getMatrix()[0].length || newY >= matrixManager.getMatrix().length || newY < 0|| (matrixManager.getMatrix()[newY][newX] == 1 && coordinates[newY - y][newX - x] != 1)) {
+                    if (newX < 0 || newX >= matrixManager.getMatrix()[0].length || newY >= matrixManager.getMatrix().length || (matrixManager.getMatrix()[newY][newX] == 1 && coordinates[newY - y][newX - x] != 1)) {
                         return false;
                     }
                 }
@@ -308,6 +309,7 @@ public class Shape {
                         }
                     }
                 }
+            // matrixManager.clearBlocks(this);
             x++;
             matrixManager.colorBlockMatrix(this);
         }
@@ -325,6 +327,7 @@ public class Shape {
                         }
                     }
                 }
+            // matrixManager.clearBlocks(this);
             x--;
             matrixManager.colorBlockMatrix(this);
         }
