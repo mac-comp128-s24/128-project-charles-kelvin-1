@@ -71,6 +71,14 @@ public class MainGame {
         }else if(e.getKey().toString().equalsIgnoreCase("W")){
             rotate = true;
             // currentShape.rotate();
+        }else if(e.getKey().toString().equalsIgnoreCase("RIGHT")){
+            currentShape.moveRight();
+        }else if(e.getKey().toString().equalsIgnoreCase("LEFT")){
+            currentShape.moveLeft();
+        }else if(e.getKey().toString().equalsIgnoreCase("DOWN")){
+            currentShape.gravity();
+        }else if(e.getKey().toString().equalsIgnoreCase("SPACE")){
+            rotate = true;
         }
     }
 
