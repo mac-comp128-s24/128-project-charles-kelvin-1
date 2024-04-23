@@ -233,7 +233,7 @@ public class Shape {
 
 
     public void rotate(){
-        if(x >= 0 || x < 10 || y < matrixManager.getMatrix().length || !(matrixManager.getMatrix()[x][y] == 1 && coordinates[x][y] != 1)){
+        if(x >= 0 || x < 10 || y < matrixManager.getMatrix().length || !(matrixManager.getMatrix()[y][x] == 1)){
             int[][] matrix = matrixManager.getMatrix();
             MatrixBlock[][] blocks = matrixManager.getBlocks();
             for(int i = 0; i < coordinates.length; i++){
