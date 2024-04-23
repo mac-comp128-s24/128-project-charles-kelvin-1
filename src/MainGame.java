@@ -15,6 +15,7 @@ public class MainGame {
     public final int HEIGHT = 600;
     public int score;
     private GraphicsText scoreLabel;
+    private boolean rotate = false;
 
     public MainGame(){
         canvas = new CanvasWindow("Tetris", WIDTH, HEIGHT);
@@ -34,6 +35,10 @@ public class MainGame {
     public void run(){
             canvas.animate(() -> {
                 if(currentShape.canMove(0, 1)){
+                    if(rotate){
+                        currentShape.rotate();
+                        rotate = false;
+                    }
                     currentShape.gravity();
                     canvas.pause(300);
                 } else{
@@ -64,7 +69,8 @@ public class MainGame {
         }else if(e.getKey().toString().equalsIgnoreCase("S")){
             currentShape.gravity();
         }else if(e.getKey().toString().equalsIgnoreCase("W")){
-            currentShape.rotate();
+            rotate = true;
+            // currentShape.rotate();
         }
     }
 

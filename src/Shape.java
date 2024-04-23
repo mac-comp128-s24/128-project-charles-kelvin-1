@@ -247,6 +247,7 @@ public class Shape {
             checkRotate();
             int[][] removed = rotations.remove();
             coordinates = removed;
+            matrixManager.colorBlockMatrix(this);
             rotations.add(removed);
         }
         
