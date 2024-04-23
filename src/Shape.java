@@ -235,10 +235,12 @@ public class Shape {
     public void rotate(){
         if(x >= 0 || x < 10 || y < matrixManager.getMatrix().length || !(matrixManager.getMatrix()[x][y] == 1 && coordinates[x][y] != 1)){
             int[][] matrix = matrixManager.getMatrix();
+            MatrixBlock[][] blocks = matrixManager.getBlocks();
             for(int i = 0; i < coordinates.length; i++){
                 for(int j = 0; j < coordinates[i].length; j++){
                     if(i + y > -1 && i + y < 20 && j + x <10 && j + x > -1 && matrix[i + y][j + x] == 1 && coordinates[i][j] == 1){
                         matrix[i + y][j + x] = 0;
+                        blocks[i + y][j + x].setDefaultColor();
                     }
                 }
             }
@@ -276,7 +278,7 @@ public class Shape {
                     }
                 }
             }
-            // matrixManager.clearBlocks(this);
+            matrixManager.clearBlocks(this);
             y++;
             matrixManager.colorBlockMatrix(this);
         }
@@ -309,7 +311,7 @@ public class Shape {
                         }
                     }
                 }
-            // matrixManager.clearBlocks(this);
+            matrixManager.clearBlocks(this);
             x++;
             matrixManager.colorBlockMatrix(this);
         }
@@ -327,7 +329,7 @@ public class Shape {
                         }
                     }
                 }
-            // matrixManager.clearBlocks(this);
+            matrixManager.clearBlocks(this);
             x--;
             matrixManager.colorBlockMatrix(this);
         }

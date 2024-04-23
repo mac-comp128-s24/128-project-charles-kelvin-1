@@ -53,17 +53,6 @@ public class MatrixManager {
         }
     }
 
-    private void moveRowDown(int index, int numOfRows){
-        if(numOfRows > 0){
-            for(int i = index; i >= 0; i--){
-                for(int j = 0; j < 10; j++){
-                    matrix[i + numOfRows][j] = matrix[i][j];
-                    matrix[i][j] = 0;
-                }
-            }
-        }
-    }
-
     public MatrixBlock[][] getBlocks() {
         return blocks;
     }
@@ -76,34 +65,34 @@ public class MatrixManager {
         matrix = m;
     }
 
-    public void colorBlockMatrix(Shape shape){
-        for(int i = 0; i < matrix.length; i++){
-            for(int j = 0; j < matrix[i].length; j++){
-                if(matrix[i][j] == 1 )
-                    blocks[i][j].setFillColor(Color.RED);
-                else
-                    blocks[i][j].setFillColor(Color.GRAY);
-            }
-        }
-    }
-
     // public void colorBlockMatrix(Shape shape){
-    //     int[][] coordinates = shape.getCoordinates();
-    //     int x = shape.getX();
-    //     int y = shape.getY();
-    //     Color color = shape.getColor();
-    //     for(int i = 0; i < coordinates.length; i++){
-    //         for(int j = 0; j < coordinates[i].length; j++){
-    //             if(i + y > -1 && i + y < 20 && j + x < 10 && j + x > -1){
-    //                 if((matrix[i + y][j + x] == 1 && coordinates[i][j] == 1)){
-    //                     blocks[i + y][j + x].setFillColor(color);
-    //                 } else if(matrix[i + y][j + x] == 0){
-    //                     blocks[i + y][j + x].setDefaultColor();
-    //                 }
-    //             }
+    //     for(int i = 0; i < matrix.length; i++){
+    //         for(int j = 0; j < matrix[i].length; j++){
+    //             if(matrix[i][j] == 1 )
+    //                 blocks[i][j].setFillColor(Color.RED);
+    //             else
+    //                 blocks[i][j].setFillColor(Color.GRAY);
     //         }
     //     }
     // }
+
+    public void colorBlockMatrix(Shape shape){
+        int[][] coordinates = shape.getCoordinates();
+        int x = shape.getX();
+        int y = shape.getY();
+        Color color = shape.getColor();
+        for(int i = 0; i < coordinates.length; i++){
+            for(int j = 0; j < coordinates[i].length; j++){
+                if(i + y > -1 && i + y < 20 && j + x < 10 && j + x > -1){
+                    if((matrix[i + y][j + x] == 1 && coordinates[i][j] == 1)){
+                        blocks[i + y][j + x].setFillColor(color);
+                    } else if(matrix[i + y][j + x] == 0){
+                        blocks[i + y][j + x].setDefaultColor();
+                    }
+                }
+            }
+        }
+    }
 
     public void clearMatrix(Shape shape){
         int[][] coordinates = shape.getCoordinates();
@@ -123,7 +112,7 @@ public class MatrixManager {
         int y = shape.getY();
         for(int i = 0; i < coordinates.length; i++){
             for(int j = 0; j < coordinates[i].length; j++){
-                if(i + y > -1 && i + y < 20 && x + j < 10 && matrix[i + y][j + x] == 0){
+                if(i + y > -1 && i + y < 20 && x + j < 10 && matrix[i + y][j + x] == 0 && coordinates[i][j] == 1){
                     blocks[i + y][j + x].setDefaultColor();
                 }
             }
@@ -146,6 +135,20 @@ public class MatrixManager {
         }
         m.setScore(numOfRemovedRows);
     }
+
+    private void moveRowDown(int index, int numOfRows){
+        if(numOfRows > 0){
+            for(int i = index; i >= 0; i--){
+                for(int j = 0; j < 10; j++){
+                    matrix[i + numOfRows][j] = matrix[i][j];
+                    blocks[i + numOfRows][j].setFillColor(blocks[i][j].getFillColor());
+                    matrix[i][j] = 0;
+                    blocks[i][j].setDefaultColor();
+                }
+            }
+        }
+    }
+
 
 
 
