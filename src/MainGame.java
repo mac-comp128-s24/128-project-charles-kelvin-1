@@ -15,7 +15,10 @@ public class MainGame {
     public final int HEIGHT = 600;
     public int score;
     private GraphicsText scoreLabel;
+    private GraphicsText levelLabel;
     private boolean rotate = false;
+    private int pauseLength = 300;
+    private int level = 1;
 
     public MainGame(){
         canvas = new CanvasWindow("Tetris", WIDTH, HEIGHT);
@@ -30,6 +33,9 @@ public class MainGame {
         scoreLabel = new GraphicsText("Score: " + score);
         scoreLabel.setFont(FontStyle.PLAIN, 24);
         canvas.add(scoreLabel, 20, 40);
+        levelLabel = new GraphicsText("Level: " + level);
+        levelLabel.setFont(FontStyle.PLAIN, 24);
+        canvas.add(levelLabel, 150, 40);
     }
 
     public void run(){
@@ -39,8 +45,10 @@ public class MainGame {
                         currentShape.rotate();
                         rotate = false;
                     }
+                    levelSpeed();
+                    levelLabel.setText("Level: " + level);
                     currentShape.gravity();
-                    canvas.pause(300);
+                    canvas.pause(pauseLength);
                 } else{
                     if (isGameOver()){
                         canvas.closeWindow();
@@ -112,6 +120,19 @@ public class MainGame {
             score+=300;
         else
             score+=500;
+    }
+
+    private void levelSpeed(){
+        if(score < 375){
+            level = 1;
+            pauseLength = 300;
+        } else if(score >= 375 && score < 750){
+            level = 2;
+            pauseLength = 200;
+        } else{
+            level = 3;
+            pauseLength = 100;
+        }
     }
 
 
