@@ -14,6 +14,11 @@ public class Shape {
     private Queue<int[][]> rotations;
     private Color color;
 
+    /**
+     * This is the constructor that initailizes all the necessary instance variables
+     * @param matrixManager is the board that the shape is placed on
+     * @param name corresponds to the type of shape that this shape will be. Ex: O-Block
+     */
     public Shape(MatrixManager matrixManager, String name){
         this.matrixManager = matrixManager;
         rotations = new ArrayDeque<>();
@@ -54,6 +59,9 @@ public class Shape {
         coordinates = first;
     }
 
+    /**
+     * Initializes the x, y, color variables for the O-Block. Additionally, this method creates the 2d arrays that corresponds to the different rotations
+     */
     private void IsOBlock(){
         x = 4;
         y = -1;
@@ -77,9 +85,11 @@ public class Shape {
         fourth[1][0] = 1;
         fourth[0][1] = 1;
         fourth[1][1] = 1;
-
     }
 
+    /**
+     * Initializes the x, y, color variables for the Z-Block. Additionally, this method creates the 2d arrays that corresponds to the different rotations
+     */
     private void IsZBlock(){
         x = 4;
         y = -1;
@@ -105,6 +115,9 @@ public class Shape {
         fourth[2][0] = 1;
     }
 
+    /**
+     * Initializes the x, y, color variables for the S-Block. Additionally, this method creates the 2d arrays that corresponds to the different rotations
+     */
     private void IsSBlock(){
         x = 4;
         y = -1;
@@ -130,6 +143,9 @@ public class Shape {
         fourth[2][1] = 1;
     }
 
+    /**
+     * Initializes the x, y, color variables for the I-Block. Additionally, this method creates the 2d arrays that corresponds to the different rotations
+     */
     private void IsIBlock(){
         x = 3;
         y = -1;
@@ -155,6 +171,9 @@ public class Shape {
         fourth[3][0] = 1;
     }
 
+    /**
+     * Initializes the x, y, color variables for the L-Block. Additionally, this method creates the 2d arrays that corresponds to the different rotations
+     */
     private void IsLBlock(){
         x = 3;
         y = -1;
@@ -180,6 +199,9 @@ public class Shape {
         fourth[2][1] = 1;
     }
 
+    /**
+     * Initializes the x, y, color variables for the J-Block. Additionally, this method creates the 2d arrays that corresponds to the different rotations
+     */
     private void IsJBlock(){
         x = 3;
         y = -1;
@@ -205,6 +227,9 @@ public class Shape {
         fourth[2][0] = 1;
     }
 
+    /**
+     * Initializes the x, y, color variables for the T-Block. Additionally, this method creates the 2d arrays that corresponds to the different rotations
+     */
     private void IsTBlock(){
         x = 4;
         y = -1;
@@ -231,7 +256,9 @@ public class Shape {
     }
 
 
-
+    /**
+     * This method rotates the current block on the screen by moving to the next set of coordinates in the rotation queue. This rotation queue essentially acts as a circlular array. Additionally this method calls check rotate to make sure the block can rotate without hitting other blocks.
+     */
     public void rotate(){
         if(x >= 0 || x < 10 && y < matrixManager.getMatrix().length && matrixManager.getMatrix()[y][x] != 1){
             int[][] matrix = matrixManager.getMatrix();
@@ -253,6 +280,9 @@ public class Shape {
         
     }
 
+    /**
+     * This is a helper method within the rotate method. This method simply gets the coordinates of the next rotation and traverses through each index in the 2d array checking whether it is a one or not. If it is a one then it checks if the one is out of bounds of the Matrix board and repositions effectively.
+     */
     public void checkRotate(){
         int[][] next = rotations.peek();
         for(int i = 0; i < next.length; i++){
@@ -267,6 +297,30 @@ public class Shape {
         }
     }
 
+    /**
+     * This method simply checks whether an object can move in a direction indicated by the dx and dy values.
+     * @param dx this represents the change in x that we want our shape to undergo.
+     * @param dy this represents the change in y that we want our shape to undergo.
+     * @return returns whether the shape can move based on the changes to x and y by dx and dy
+     */
+    public boolean canMove(int dx, int dy) {
+        for (int i = 0; i < coordinates.length; i++) {
+            for (int j = 0; j < coordinates[i].length; j++) {
+                if (coordinates[i][j] == 1) {
+                    int newX = x + j + dx;
+                    int newY = y + i + dy;
+                    if (newX < 0 || newX >= matrixManager.getMatrix()[0].length || newY >= matrixManager.getMatrix().length || (matrixManager.getMatrix()[newY][newX] == 1 && coordinates[newY - y][newX - x] != 1)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * This method calls canMove with a dy of 1 to check if the shape can move down one block. If it can, then each coordinate in the coordinates 2d array is shifted down 1 on the matrix board. The y value is then correctly incremented.
+     */
     public void gravity(){
         if(canMove(0, 1)){
             int[][] matrix = matrixManager.getMatrix();
@@ -285,21 +339,9 @@ public class Shape {
         }
     }
 
-    public boolean canMove(int dx, int dy) {
-        for (int i = 0; i < coordinates.length; i++) {
-            for (int j = 0; j < coordinates[i].length; j++) {
-                if (coordinates[i][j] == 1) {
-                    int newX = x + j + dx;
-                    int newY = y + i + dy;
-                    if (newX < 0 || newX >= matrixManager.getMatrix()[0].length || newY >= matrixManager.getMatrix().length || (matrixManager.getMatrix()[newY][newX] == 1 && coordinates[newY - y][newX - x] != 1)) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
+    /**
+     * This method calls canMove with a dx of 1 to check if the shape can move one block to the right. If it can, then each coordinate in the coordinates 2d array is shifted right 1 on the matrix board. The x value is then correctly incremented.
+     */
     public void moveRight(){
         if(y > -1 && canMove(1, 0)){
             int[][] matrix = matrixManager.getMatrix();
@@ -318,6 +360,9 @@ public class Shape {
         }
     }
 
+    /**
+     * This method calls canMove with a dx of -1 to check if the shape can move one block to the left. If it can, then each coordinate in the coordinates 2d array is shifted left 1 on the matrix board. The x value is then correctly decremented.
+     */
     public void moveLeft(){
         if(x - 1 > -1 && y > -1 && canMove(-1, 0)){
             int[][] matrix = matrixManager.getMatrix();
@@ -336,18 +381,34 @@ public class Shape {
         }
     }
 
+    /**
+     * This method simply returns the current coordinates of the shape
+     * @return the coordinates
+     */
     public int[][] getCoordinates(){
         return coordinates;
     }
 
+    /**
+     * This method simply returns the current x position that corresponds to the matrix board
+     * @return the x value
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * This method simply returns the current y position that corresponds to the matrix board
+     * @return the y value
+     */
     public int getY() {
         return y;
     }
 
+    /**
+     * This method simply returns the current color of the shape so that the board can correctly color the shape.
+     * @return the color of the shape
+     */
     public Color getColor() {
         return color;
     }
