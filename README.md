@@ -1,3 +1,3 @@
-# Project Title Goes Here
+# Tetris 2.0
 
-Info about your project goes here
+Tetris 2.0, runs the vintage game tetris, on java. 
