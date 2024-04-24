@@ -79,7 +79,6 @@ public class MainGame {
             currentShape.gravity();
         }else if(key.equalsIgnoreCase("W") || key.equalsIgnoreCase("SPACE")){
             rotate = true;
-            // currentShape.rotate();
         }
     }
 
@@ -103,9 +102,8 @@ public class MainGame {
         shapeQueue.add(new Shape(matrixManager, shapeName));
     }
     public boolean isGameOver(){
-        if (!currentShape.canMove(0,1) && currentShape.getY() < 0){
+        if (!currentShape.canMove(0,1) && currentShape.getY() < 0)
             return true;
-        }
         return false;
     }
 

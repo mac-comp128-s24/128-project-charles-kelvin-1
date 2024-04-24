@@ -37,45 +37,6 @@ public class MatrixManager {
         }
     }
 
-    public boolean rowIsComplete(int i){
-        for(int j = 0; j < matrix[i].length; j++){
-            if(matrix[i][j] == 0){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void resetRow(int i){
-        for(int j = 0; j < blocks[i].length; j++){
-            blocks[i][j].setFillColor(Color.GRAY);
-            matrix[i][j] = 0;
-        }
-    }
-
-    public MatrixBlock[][] getBlocks() {
-        return blocks;
-    }
-
-    public int[][] getMatrix(){
-        return matrix;
-    }
-
-    public void setMatrix(int[][] m){
-        matrix = m;
-    }
-
-    // public void colorBlockMatrix(Shape shape){
-    //     for(int i = 0; i < matrix.length; i++){
-    //         for(int j = 0; j < matrix[i].length; j++){
-    //             if(matrix[i][j] == 1 )
-    //                 blocks[i][j].setFillColor(Color.RED);
-    //             else
-    //                 blocks[i][j].setFillColor(Color.GRAY);
-    //         }
-    //     }
-    // }
-
     public void colorBlockMatrix(Shape shape){
         int[][] coordinates = shape.getCoordinates();
         int x = shape.getX();
@@ -119,6 +80,22 @@ public class MatrixManager {
         }
     }
 
+    public boolean rowIsComplete(int i){
+        for(int j = 0; j < matrix[i].length; j++){
+            if(matrix[i][j] == 0){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void resetRow(int i){
+        for(int j = 0; j < blocks[i].length; j++){
+            blocks[i][j].setFillColor(Color.GRAY);
+            matrix[i][j] = 0;
+        }
+    }
+
     public void rowsAreComplete(Shape shape, MainGame m){
         int y = shape.getY();
         int numOfRemovedRows = 0;
@@ -149,7 +126,16 @@ public class MatrixManager {
         }
     }
 
+    public MatrixBlock[][] getBlocks() {
+        return blocks;
+    }
 
+    public int[][] getMatrix(){
+        return matrix;
+    }
 
+    public void setMatrix(int[][] m){
+        matrix = m;
+    }
 
 }
