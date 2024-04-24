@@ -5,6 +5,9 @@ import java.util.Collections;
 
 import edu.macalester.graphics.CanvasWindow;
 
+/**
+ * Creates a 2D array representing the board for the game. Manages opertaion on the board.
+ */
 public class MatrixManager {
     private int[][] matrix;
     private MatrixBlock[][] blocks;
@@ -12,8 +15,11 @@ public class MatrixManager {
     private final double LEFT_MOST_BLOCK = 100;
     private final double TOP_MOST_BlOCK = 100;
 
-    
-
+/**
+ * Creates a 20 by 10 array for the board in a canvas window, 
+ * initializes indicies as blank matirix blocks to be displayed.
+ * @param canvas, the window to display the board
+ */
     public MatrixManager(CanvasWindow canvas){
         this.canvas = canvas;
         matrix = new int[20][10];
@@ -37,6 +43,11 @@ public class MatrixManager {
         }
     }
 
+    /**
+     * Iterates through the coordiantes for given shape, sets blocks to the correct color or
+     * makes them default color if empty.
+     * @param shape, shape to be colored in.
+     */
     public void colorBlockMatrix(Shape shape){
         int[][] coordinates = shape.getCoordinates();
         int x = shape.getX();
@@ -55,18 +66,10 @@ public class MatrixManager {
         }
     }
 
-    public void clearMatrix(Shape shape){
-        int[][] coordinates = shape.getCoordinates();
-        int x = shape.getX();
-        int y = shape.getY();
-        for(int i = 0; i < coordinates.length; i++){
-            for(int j = 0; j < coordinates[i].length; j++){
-                if(i + y > -1 && i + y < 20)
-                    matrix[i + y][j + x] = 0;
-            }
-        }
-    }
-
+    /**
+     * Iterates through shape grid and sets blocks to be emtpy.
+     * @param shape, shape to be cleared.
+     */
     public void clearBlocks(Shape shape){
         int[][] coordinates = shape.getCoordinates();
         int x = shape.getX();
@@ -80,6 +83,11 @@ public class MatrixManager {
         }
     }
 
+    /**
+     * Checks if row in matix is complete
+     * @param i, row to be checked
+     * @return, true if full ot false
+     */
     public boolean rowIsComplete(int i){
         for(int j = 0; j < matrix[i].length; j++){
             if(matrix[i][j] == 0){
@@ -89,6 +97,10 @@ public class MatrixManager {
         return true;
     }
 
+    /**
+     * Iterates throug row and sets each block to be empty
+     * @param i, row to be reset
+     */
     public void resetRow(int i){
         for(int j = 0; j < blocks[i].length; j++){
             blocks[i][j].setFillColor(Color.GRAY);
@@ -96,6 +108,11 @@ public class MatrixManager {
         }
     }
 
+    /**
+     * Checks if multiple rows are complete in the game and adjusts score
+     * @param shape, current shape to check if it has completed a row
+     * @param m, main game to set the score in
+     */
     public void rowsAreComplete(Shape shape, MainGame m){
         int y = shape.getY();
         int numOfRemovedRows = 0;
@@ -113,6 +130,11 @@ public class MatrixManager {
         m.setScore(numOfRemovedRows);
     }
 
+    /**
+     * Moves above blocks down a row after completion
+     * @param index, row to begin moving down
+     * @param numOfRows, number of blocks to move down at once.
+     */
     private void moveRowDown(int index, int numOfRows){
         if(numOfRows > 0){
             for(int i = index; i >= 0; i--){
@@ -126,16 +148,18 @@ public class MatrixManager {
         }
     }
 
+    /**
+     * returns the matrix blocks in from the game board.
+     */
     public MatrixBlock[][] getBlocks() {
         return blocks;
     }
 
+    /**
+     * returns the matrix
+     */
     public int[][] getMatrix(){
         return matrix;
-    }
-
-    public void setMatrix(int[][] m){
-        matrix = m;
     }
 
 }
