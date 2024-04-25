@@ -98,7 +98,7 @@ public class MatrixManager {
     }
 
     /**
-     * Iterates throug row and sets each block to be empty
+     * Iterates through row and sets each block to be empty
      * @param i, row to be reset
      */
     public void resetRow(int i){
