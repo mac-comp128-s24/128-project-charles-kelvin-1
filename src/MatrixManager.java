@@ -1,7 +1,4 @@
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Collections;
 
 import edu.macalester.graphics.CanvasWindow;
 
@@ -11,7 +8,6 @@ import edu.macalester.graphics.CanvasWindow;
 public class MatrixManager {
     private int[][] matrix;
     private MatrixBlock[][] blocks;
-    private CanvasWindow canvas;
     private final double LEFT_MOST_BLOCK = 100;
     private final double TOP_MOST_BlOCK = 100;
 
@@ -21,7 +17,6 @@ public class MatrixManager {
  * @param canvas, the window to display the board
  */
     public MatrixManager(CanvasWindow canvas){
-        this.canvas = canvas;
         matrix = new int[20][10];
         for(int i = 0; i < matrix.length; i++){
             for(int j = 0; j < matrix[i].length; j++){
