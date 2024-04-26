@@ -323,6 +323,28 @@ public class Shape {
         return true;
     }
 
+ /**
+ * This method returns the maximum number of positions the shape can move left without causing an obstruction.
+ * @return the maximum number of positions the shape can move left
+ */
+public int canMoveLeft() {
+    int maxLeft = Integer.MAX_VALUE;
+    for (int i = 0; i < coordinates.length; i++) {
+        for (int j = 0; j < coordinates[i].length; j++) {
+            if (coordinates[i][j] == 1) {
+                int newX = x + j - 1;
+                int newY = y + i;
+                if (newX < 0) {
+                    maxLeft = Math.min(maxLeft, Math.abs(newX)); // Adjust maxLeft to prevent out-of-bounds
+                } else if (newY >= 0 && matrixManager.getMatrix()[newY][newX] == 1) {
+                    maxLeft = Math.min(maxLeft, j); // Adjust maxLeft to prevent overlapping other blocks
+                }
+            }
+        }
+    }
+    return Math.min(maxLeft, x); // Adjust maxLeft to prevent going beyond the left boundary
+}
+
     /**
      * This method calls canMove with a dy of 1 to check if the shape can move down one block. If it can, then each coordinate in the coordinates 2d array is shifted down 1 on the matrix board. The y value is then correctly incremented.
      */
@@ -366,23 +388,26 @@ public class Shape {
     }
 
     /**
-     * This method calls canMove with a dx of -1 to check if the shape can move one block to the left. If it can, then each coordinate in the coordinates 2d array is shifted left 1 on the matrix board. The x value is then correctly decremented.
+     * This method calls canMove with a dx of -1 to check if the shape can move one block to the left. 
+     * If it can, then each coordinate in the coordinates 2d array is shifted left 1 on the matrix board. The x value is then correctly decremented.
      */
-    public void moveLeft(){
-        if(y > -1 && canMove(-1, 0)){
-            int[][] matrix = matrixManager.getMatrix();
-                for(int i = 0; i < coordinates.length; i++){
-                    for(int j = 0; j < coordinates[i].length; j++){
-                        if(coordinates[i][j] == 1){
-                            if(i + y > -1)
-                                matrix[i + y][j + x] = 0;
-                            matrix[i + y][j + x - 1] = 1;
+    public void moveLeft() {
+        if (y > -1) {
+            int maxLeft = canMoveLeft();
+            if (maxLeft > 0) {
+                int[][] matrix = matrixManager.getMatrix();
+                for (int i = 0; i < coordinates.length; i++) {
+                    for (int j = 0; j < coordinates[i].length; j++) {
+                        if (coordinates[i][j] == 1) {
+                            matrix[y + i][x + j - maxLeft] = 1;
+                            matrix[y + i][x + j] = 0;
                         }
                     }
                 }
-            matrixManager.clearBlocks(this);
-            x--;
-            matrixManager.colorBlockMatrix(this);
+                x -= maxLeft;
+                matrixManager.clearBlocks(this);
+                matrixManager.colorBlockMatrix(this);
+            }
         }
     }
 
