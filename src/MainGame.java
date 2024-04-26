@@ -80,18 +80,18 @@ public class MainGame {
 
     public void handleKey(KeyboardEvent e){
         String key = e.getKey().toString();
-        if(key.equalsIgnoreCase("A")){
+        if(key.equalsIgnoreCase("A") || key.equalsIgnoreCase("J")){
             currentShape.moveLeft();
-        } else if(key.equalsIgnoreCase("D")){
+        } else if(key.equalsIgnoreCase("D") || key.equalsIgnoreCase("L")){
             currentShape.moveRight();
-        }else if(key.equalsIgnoreCase("S")){
+        }else if(key.equalsIgnoreCase("S") || key.equalsIgnoreCase("K")){
             currentShape.gravity();
-        }else if(key.equalsIgnoreCase("W") || key.equalsIgnoreCase("SPACE")){
+        }else if(key.equalsIgnoreCase("W") || key.equalsIgnoreCase("SPACE") || key.equalsIgnoreCase("I")){
             rotate = true;
         }
     }
 
-    /**
+    /**i
      * This method randomly creates one the seven available blocks and adds it to the shapeQueue.
      */
     private void generateBlock(){
