@@ -312,8 +312,6 @@ public class Shape {
                 if (coordinates[i][j] == 1) {
                     int newX = x + j + dx;
                     int newY = y + i + dy;
-                    // int idk = coordinates[newY - y][newX - x];
-                    // System.out.println(idk);
                     if (newX < 0 || newX >= matrixManager.getMatrix()[0].length || newY >= matrixManager.getMatrix().length || (matrixManager.getMatrix()[newY][newX] == 1 && coordinates[newY - y][newX - x] != 1)) {
                         return false;
                     }
