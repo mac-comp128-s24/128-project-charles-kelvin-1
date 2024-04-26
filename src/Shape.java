@@ -312,6 +312,8 @@ public class Shape {
                 if (coordinates[i][j] == 1) {
                     int newX = x + j + dx;
                     int newY = y + i + dy;
+                    // int idk = coordinates[newY - y][newX - x];
+                    // System.out.println(idk);
                     if (newX < 0 || newX >= matrixManager.getMatrix()[0].length || newY >= matrixManager.getMatrix().length || (matrixManager.getMatrix()[newY][newX] == 1 && coordinates[newY - y][newX - x] != 1)) {
                         return false;
                     }
@@ -367,7 +369,7 @@ public class Shape {
      * This method calls canMove with a dx of -1 to check if the shape can move one block to the left. If it can, then each coordinate in the coordinates 2d array is shifted left 1 on the matrix board. The x value is then correctly decremented.
      */
     public void moveLeft(){
-        if(y > -1 && canMove(0, 1) && canMove(-1, 0)){
+        if(y > -1 && canMove(-1, 0)){
             int[][] matrix = matrixManager.getMatrix();
                 for(int i = 0; i < coordinates.length; i++){
                     for(int j = 0; j < coordinates[i].length; j++){
