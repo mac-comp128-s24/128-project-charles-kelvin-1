@@ -2,6 +2,9 @@ import java.util.Queue;
 import java.util.ArrayDeque;
 import java.awt.Color;
 
+/**
+ * Creates a shape object that has a 2d array allowing it to move on the board when put in collaboration with the MatrixManager class
+ */
 public class Shape {
     private int x;
     private int y;

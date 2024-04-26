@@ -20,6 +20,9 @@ public class MainGame {
     private int pauseLength = 300;
     private int level = 1;
 
+    /**
+     * This constructor simply initializes all the instance variables and adds two shape objects to the shapeQueue
+     */
     public MainGame(){
         canvas = new CanvasWindow("Tetris", WIDTH, HEIGHT);
         matrixManager = new MatrixManager(canvas);
@@ -38,6 +41,9 @@ public class MainGame {
         canvas.add(levelLabel, 150, 40);
     }
 
+    /**
+     * This method handles the animation of the game using an animate loop. In this loop, gravity, rotations, game condition, score and level labels are all handled.
+     */
     public void run(){
             canvas.animate(() -> {
                 if(currentShape.canMove(0, 1)){
@@ -65,6 +71,9 @@ public class MainGame {
             });
     }
 
+    /**
+     * Uses an onKeyDown event handler to enable keyboard inputs/keyboard movements
+     */
     public void keyCheck(){
         canvas.onKeyDown(e -> handleKey(e));
     }
@@ -82,6 +91,9 @@ public class MainGame {
         }
     }
 
+    /**
+     * This method randomly creates one the seven available blocks and adds it to the shapeQueue.
+     */
     private void generateBlock(){
         int shapeNum = (int) (Math.random()*7);
         String shapeName;
@@ -101,12 +113,21 @@ public class MainGame {
             shapeName = "T-Block";
         shapeQueue.add(new Shape(matrixManager, shapeName));
     }
+
+    /**
+     * checks whether the current shape can move and if the y position of the shape is less than 0 meaning that it is not on the board yet. If it can't move and its not on the board the method returns true. Otherwise it returns false.
+     * @return whether the game is over or not.
+     */
     public boolean isGameOver(){
         if (!currentShape.canMove(0,1) && currentShape.getY() < 0)
             return true;
         return false;
     }
 
+    /**
+     * sets the score based on the number of complete rows cleared.
+     * @param num the number of removed rows/ complete rows when the shape cant move anymore.
+     */
     public void setScore(int num){
         if(num == 0)
             score+=10;
@@ -120,6 +141,9 @@ public class MainGame {
             score+=500;
     }
 
+    /**
+     * sets the level and pause length or the overall delay between the shape moving down based on the current score
+     */
     private void levelSpeed(){
         if(score < 375){
             level = 1;
@@ -133,7 +157,10 @@ public class MainGame {
         }
     }
 
-
+    /**
+     * This is the main method that allows the game to actually run
+     * @param args
+     */
     public static void main(String[] args) {
         MainGame mainGame = new MainGame();
         mainGame.run();
