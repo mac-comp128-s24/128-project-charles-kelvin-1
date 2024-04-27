@@ -327,7 +327,7 @@ public class Shape {
  * @return the maximum number of positions the shape can move left
  */
 public int canMoveLeft() {
-    int maxLeft = Integer.MAX_VALUE;
+    int maxLeft = 10;
     for (int i = 0; i < coordinates.length; i++) {
         for (int j = 0; j < coordinates[i].length; j++) {
             if (coordinates[i][j] == 1) {
