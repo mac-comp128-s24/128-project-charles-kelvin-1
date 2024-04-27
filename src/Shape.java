@@ -260,7 +260,8 @@ public class Shape {
 
 
     /**
-     * This method rotates the current block on the screen by moving to the next set of coordinates in the rotation queue. This rotation queue essentially acts as a circlular array. Additionally this method calls check rotate to make sure the block can rotate without hitting other blocks.
+     * This method rotates the current block on the screen by moving to the next set of coordinates in the rotation queue. 
+     * This rotation queue essentially acts as a circlular array. Additionally this method calls check rotate to make sure the block can rotate without hitting other blocks.
      */
     public void rotate(){
         if(x >= 0 || x < 10 && y < matrixManager.getMatrix().length && matrixManager.getMatrix()[y][x] != 1){
