@@ -2,7 +2,7 @@
 
 Tetris 2.0, runs the vintage game tetris, on java. This project effectively encapsulates the most important parts of the original tetris game. However, it is worth noting that there are still minor bugs with the rotation method and the moving left of I-Block pieces. Besides that the game functions in every possible way identical to the original tetris game. There is no test folder for this project as much of our testing is simply visually viewing bugs and debugging errors that arise while running the program. The main method is included in the MainGame class. You should not need to do anything beyond running the main method when wanting to play our tetris game. 
 
-The MainGame is resposnible for the craetion of the canvas window, spawning of blocks, animation loop, key handling, score/level counter and ending message.
+The MainGame is responsible for the creation of the canvas window, spawning of blocks, animation loop, keyboard handling, score/level counter and ending message.
 
 The MatrixBlock class represents the block objects that fill the indicies of our arrays and are displayed on the canvas.
 
